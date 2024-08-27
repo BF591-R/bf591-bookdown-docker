@@ -1,0 +1,17 @@
+name: Build bf591 Bookdown image
+run-name: ${{ github.actor }} is testing this assignment solution
+on: [push]
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+      - run: |
+          IMG_NAME=bf591-bookdown-docker
+          IMG_ID=ghcr.io/bf591-r/$IMG_NAME
+          VERSION=`cat VERSION`
+          docker build -t $IMG_ID:$VERSION -t $IMG_ID:latest  .
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          docker push ghcr.io/bf591-r/$IMG_NAME:$VERSION
+          docker push ghcr.io/bf591-r/$IMG_NAME:latest
