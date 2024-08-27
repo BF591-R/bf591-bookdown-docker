@@ -1,5 +1,5 @@
 name: Build bf591 Bookdown image
-run-name: ${{ github.actor }} is testing this assignment solution
+run-name: ${{ github.actor }} is building the image
 on: [push]
 jobs:
   Test:
