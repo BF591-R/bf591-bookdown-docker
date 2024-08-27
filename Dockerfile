@@ -5,8 +5,6 @@ COPY --chown=$MAMBA_USER:$MAMBA_USER environment.yml /environment.yml
 RUN micromamba install -y -n base -f /environment.yml && \
     micromamba clean --all --yes
 
-COPY --chown=$MAMBA_USER:$MAMBA_USER install_r_packages.R /install_r_packages.R
-
 # default install produces the following error when running in Docker:
 # > library(affy)
 # > library(affydata)
